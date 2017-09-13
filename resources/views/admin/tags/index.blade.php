@@ -2,14 +2,14 @@
 @section('title','Listado de tags')
 @section('content')
 <div class="container">
-{!! Form::open(['route' => 'tags.index','method'=> 'GET','class' =>'navbar-form pull-right' ]) !!}
-			<div class="form-group">
-				{!! Form::text('name','',['class'=>'form-control','placeholder'=>'Ej: tag1', 'required']) !!}
-			</div>
-			<button type="submit" class="btn btn-default">Buscar</button>
-		{!! Form::close() !!}
-		<a href="{{ route('tags.create') }}" class="btn btn-success">Crear un tag</a>
-		<hr>
+	{!! Form::open(['route' => 'tags.index','method'=> 'GET','class' =>'navbar-form pull-right' ]) !!}
+	<div class="form-group">
+		{!! Form::text('name','',['class'=>'form-control','placeholder'=>'Ej: tag1', 'required']) !!}
+	</div>
+	<button type="submit" class="btn btn-default">Buscar</button>
+	{!! Form::close() !!}
+	<a href="{{ route('tags.create') }}" class="btn btn-success">Crear un tag</a>
+	<hr>
 	<table class="table table-striped">
 		<thead>
 			<th>Id</th>

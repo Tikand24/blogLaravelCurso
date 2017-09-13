@@ -15,9 +15,14 @@ class ArticulosController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index() {
+	public function index(Request $request) {
 		//
-		return view('admin.articulos.index');
+		$articles = Article::search($request->name)->orderBy('id', 'DESC')->paginate(5);
+		$articles->each(function ($articles) {
+			$articles->category;
+			$articles->user;
+		});
+		return view('admin.articulos.index')->with('articulos', $articles);
 	}
 
 	/**
@@ -80,6 +85,14 @@ class ArticulosController extends Controller {
 	 */
 	public function edit($id) {
 		//
+		$articulo = Article::find($id);
+		$categorias = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+		$tags = Tag::orderBy('name', 'ASC')->pluck('name', 'id');
+		return view('admin.articulos.edit')
+			->with('categorias', $categorias)
+			->with('tags', $tags)
+			->with('tagsArticulo', $articulo->tags->pluck('id')->toArray())
+			->with('articulo', $articulo);
 	}
 
 	/**
@@ -91,6 +104,14 @@ class ArticulosController extends Controller {
 	 */
 	public function update(Request $request, $id) {
 		//
+		$article = Article::find($id);
+		$article->title = $request->titulo;
+		$article->content = $request->contenido;
+		$article->category_id = $request->categorias;
+		$article->save();
+		$article->tags()->sync($request->tag);
+		flash('se ha actualizado el articulo ' . $article->title . ' de forma satisfactoria')->success();
+		return redirect()->route('articulos.index');
 	}
 
 	/**
@@ -101,5 +122,9 @@ class ArticulosController extends Controller {
 	 */
 	public function destroy($id) {
 		//
+		$articulo = Article::find($id);
+		$articulo->delete();
+		flash('El  articulo ' . $articulo->name . ' se borro de forma exitosa')->error();
+		return redirect()->route('articulos.index');
 	}
 }
