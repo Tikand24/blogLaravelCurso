@@ -2,16 +2,23 @@
 @section('title','Listado de articulos')
 @section('content')
 <div class="container">
-	<div class="row">
-		<a href="{{ route('articulos.create') }}" class="btn btn-success">Crear una articulo</a>
-
-	{!! Form::open(['route' => 'articulos.index','method'=> 'GET','class' =>'navbar-form pull-right' ]) !!}
-	<div class="form-group">
-		{!! Form::text('name','',['class'=>'form-control','placeholder'=>'Ej: tag1', 'required']) !!}
-	</div>
-	<button type="submit" class="btn btn-default">Buscar</button>
-	{!! Form::close() !!}
-	</div>
+            <div class="page-title">
+              <div class="title_left">
+                <h3><a href="{{ route('articulos.create') }}" class="btn btn-success">Crear una articulo</a></h3>
+              </div>
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                	{!! Form::open(['route' => 'articulos.index','method'=> 'GET' ]) !!}
+                  <div class="input-group">
+                   {!! Form::text('name','',['class'=>'form-control','placeholder'=>'Buscar..', 'required']) !!}
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="submit">Buscar</button>
+                    </span>
+                  </div>
+                	{!! Form::close() !!}
+                </div>
+              </div>
+            </div>
 	<table class="table table-striped">
 		<thead>
 			<th>Id</th>
@@ -28,14 +35,13 @@
 				<td>{{ $art->category->name }}</td>
 				<td>{{ $art->user->name }}</td>
 				<td>
-				<a href="{{ route('articulos.edit',$art->id) }}" class="btn btn-primary">
-				<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-				</a>
-				<a href="{{ route('admin.articulos.destroy',$art->id) }}" class="btn btn-danger">
-				<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-				</a>
+					<a href="{{ route('articulos.edit',$art->id) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Actualizar">
+						<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+					</a>
+					<a href="{{ route('admin.articulos.destroy',$art->id) }}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Eliminar">
+						<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+					</a>
 				</td>
-
 			</tr>
 			@endforeach
 		</tbody>

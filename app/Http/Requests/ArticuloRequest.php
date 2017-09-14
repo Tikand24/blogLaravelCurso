@@ -21,10 +21,10 @@ class ArticuloRequest extends FormRequest {
 	 */
 	public function rules() {
 		return [
-			'titulo' => 'min:8|max:250|required|unique:article,title',
-			'contenido' => 'required',
+			'titulo' => 'min:8|max:250|required|unique:articles,title',
+			'contenido' => 'min:60|required',
 			'categorias' => 'required',
-			'imagen' => 'required',
+			'imagen' => 'image|required',
 		];
 	}
 }

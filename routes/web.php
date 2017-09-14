@@ -11,9 +11,22 @@
  */
 
 Route::get('/', function () {
-	return view('auth.login');
+	return redirect()->route('inicio');
 });
+Route::get('categorias/{name}', [
+	'uses' => 'FontController@searchCategory',
+	'as' => 'inicio.buscar.categoria',
+]);
+Route::get('tags/{name}', [
+	'uses' => 'FontController@searchTag',
+	'as' => 'inicio.buscar.tag',
+]);
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+
+	Route::get('/', [
+		'uses' => 'HomeController@index',
+		'as' => 'admin.index',
+	]);
 	Route::resource('users', 'UsersController');
 	Route::get('users/{id}/destroy', [
 		'uses' => 'UsersController@destroy',
@@ -34,7 +47,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 		'uses' => 'ArticulosController@destroy',
 		'as' => 'admin.articulos.destroy',
 	]);
+
+	Route::get('imagenes', [
+		'uses' => 'ImagenesController@index',
+		'as' => 'admin.imagenes.index',
+	]);
 });
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/inicio', 'FrontController@index')->name('inicio');
