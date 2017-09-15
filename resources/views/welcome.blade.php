@@ -1,4 +1,61 @@
-<!DOCTYPE html>
+@extends('admin.template.main')
+@section('title','Inicio')
+@section('content')
+<div class="page-title">
+  <div class="title_left">
+    <h3>Articulos</h3>
+  </div>
+  <div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      {!! Form::open(['route' => 'inicio','method'=> 'GET' ]) !!}
+      <div class="input-group">
+        {!! Form::text('name','',['class'=>'form-control','placeholder'=>'Buscar..', 'required']) !!}
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">Buscar</button>
+        </span>
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="x_panel">
+  <div class="x_content">
+    <div class="container-fluid">
+      <div class="row">
+        @foreach ($articulos as $articulo)
+        <div class="col-md-4">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{ $articulo->title }}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="image view view-first">
+                <img class="img-responsive" src="{{ asset('images/articles/'.$articulo->images[0]->name) }}" alt="sin imagen" />
+                <div class="mask">
+                  <p>{{ $articulo->title }}</p>
+                  <div class="tools tools-bottom">
+                    <a href="{{ route('articulo',$articulo->slug) }}">Ver mas</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <a href="{{ route('articulo',$articulo->slug) }}" class="btn btn-round btn-primary">Leer articulo <i class="fa fa-book"></i></a>
+              <p><span><i class="fa fa-newspaper-o"></i></span> {{ $articulo->created_at->diffForHumans()}}</p>
+              <p><span><i class="fa fa-folder-open"></i></span>
+              <a href="{{ route('categoria',$articulo->category->name) }}">{{ $articulo->category->name }}</a></p>
+            </div>
+          </div>
+        </div>
+        @endforeach
+      </div>
+      {!! $articulos->render() !!}
+    </div>
+  </div>
+</div>
+@endsection
+<!--<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8">
@@ -6,17 +63,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Blog Laravel</title>
-    <!-- Bootstrap core CSS -->
     <link href="{{ asset('plugins/startbootstrap/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <!-- Custom fonts for this template -->
     <link href="{{ asset('plugins/startbootstrap/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <!-- Custom styles for this template -->
     <link href="{{ asset('plugins/startbootstrap/css/freelancer.css')}}" rel="stylesheet">
   </head>
   <body id="page-top">
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">Blog</a>
@@ -48,7 +101,6 @@
         </div>
       </div>
     </nav>
-    <!-- Header -->
     <header class="masthead">
       <div class="container">
         <img class="img-fluid" src="{{ asset('plugins/startbootstrap/img/profile.png') }}" alt="">
@@ -59,7 +111,6 @@
         </div>
       </div>
     </header>
-    <!-- Portfolio Grid Section -->
     <section id="portfolio">
       <div class="container">
         <h2 class="text-center">Articulos</h2>
@@ -81,7 +132,6 @@
         </div>
       </div>
     </section>
-    <!-- About Section -->
     <section class="success" id="about">
       <div class="container">
         <h2 class="text-center">Acerca de </h2>
@@ -102,15 +152,12 @@
         </div>
       </div>
     </section>
-    <!-- Contact Section -->
     <section id="contact">
       <div class="container">
         <h2 class="text-center">Contactarme</h2>
         <hr class="star-primary">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-            <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
             <form name="sentMessage" id="contactForm" novalidate>
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
@@ -150,7 +197,6 @@
         </div>
       </div>
     </section>
-    <!-- Footer -->
     <footer class="text-center">
       <div class="footer-above">
         <div class="container">
@@ -208,13 +254,11 @@
           </div>
         </div>
       </footer>
-      <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
       <div class="scroll-top d-lg-none">
         <a class="btn btn-primary js-scroll-trigger" href="#page-top">
           <i class="fa fa-chevron-up"></i>
         </a>
       </div>
-      <!-- Portfolio Modals -->
       @foreach ($articulos as $articulo)
       <div class="portfolio-modal modal fade" id="portfolioModal{{ $articulo->id }}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -232,49 +276,44 @@
                     <hr class="star-primary">
                     <img class="img-fluid  img-centered" src="{{ asset('images/articles/'.$articulo->images[0]->name) }}" alt="">
                     {!! $articulo->content !!}
-            <a href="#" class="btn btn-lg btn-outline-nice">
-              Ver mas
-            </a>
-                      <ul class="list-inline item-details">
-                        <li>Categoria
-                          <strong>
-                            <!--
-                          <a href="{{ route('inicio.buscar.categoria',$articulo->category->name) }}">{{ $articulo->category->name }}</a>-->
-                          <a href="">{{ $articulo->category->name }}</a>
-                          </strong>
-                        </li>
-                        <li>Publicado:
-                          <strong>
-                          <a href="http://startbootstrap.com">{{ $articulo->created_at->diffForHumans()}}</a>
-                          </strong>
-                        </li>
-                        <li>Autor:
-                          <strong>
-                          <a href="http://startbootstrap.com">Web Development</a>
-                          </strong>
-                        </li>
-                      </ul>
-              <button class="btn btn-success" type="button" data-dismiss="modal">
-                      <i class="fa fa-times"></i>
-                      Cerrar</button>
-                    </div>
+                    <a href="#" class="btn btn-lg btn-outline-nice">
+                      Ver mas
+                    </a>
+                    <ul class="list-inline item-details">
+                      <li>Categoria
+                        <strong>
+                        <a href="{{ route('inicio.buscar.categoria',$articulo->category->name) }}">{{ $articulo->category->name }}</a>
+                        <a href="">{{ $articulo->category->name }}</a>
+                        </strong>
+                      </li>
+                      <li>Publicado:
+                        <strong>
+                        <a href="http://startbootstrap.com">{{ $articulo->created_at->diffForHumans()}}</a>
+                        </strong>
+                      </li>
+                      <li>Autor:
+                        <strong>
+                        <a href="http://startbootstrap.com">Web Development</a>
+                        </strong>
+                      </li>
+                    </ul>
+                    <button class="btn btn-success" type="button" data-dismiss="modal">
+                    <i class="fa fa-times"></i>
+                    Cerrar</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
       @endforeach
-        <!-- Bootstrap core JavaScript -->
-        <script src="{{ asset('plugins/startbootstrap/vendor/jquery/jquery.min.js')}}"></script>
-        <script src="{{ asset('plugins/startbootstrap/vendor/popper/popper.min.js')}}"></script>
-        <script src="{{ asset('plugins/startbootstrap/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-        <!-- Plugin JavaScript -->
-        <script src="{{ asset('plugins/startbootstrap/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-        <!-- Contact Form JavaScript -->
-        <script src="{{ asset('plugins/startbootstrap/js/jqBootstrapValidation.js')}}"></script>
-        <script src="{{ asset('plugins/startbootstrap/js/contact_me.js')}}"></script>
-        <!-- Custom scripts for this template -->
-        <script src="{{ asset('plugins/startbootstrap/js/freelancer.min.js')}}"></script>
-      </body>
-    </html>
+      <script src="{{ asset('plugins/startbootstrap/vendor/jquery/jquery.min.js')}}"></script>
+      <script src="{{ asset('plugins/startbootstrap/vendor/popper/popper.min.js')}}"></script>
+      <script src="{{ asset('plugins/startbootstrap/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+      <script src="{{ asset('plugins/startbootstrap/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+      <script src="{{ asset('plugins/startbootstrap/js/jqBootstrapValidation.js')}}"></script>
+      <script src="{{ asset('plugins/startbootstrap/js/contact_me.js')}}"></script>
+      <script src="{{ asset('plugins/startbootstrap/js/freelancer.min.js')}}"></script>
+    </body>
+  </html>-->

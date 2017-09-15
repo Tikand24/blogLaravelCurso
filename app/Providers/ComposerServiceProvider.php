@@ -13,7 +13,7 @@ class ComposerServiceProvider extends ServiceProvider {
 	 */
 	public function boot() {
 		//
-		View::composer(['welcome', 'admin.index'], 'App\Http\ViewComposers\AsideComposer');
+		View::composer(['welcome', 'admin.index', 'front.articulo'], 'App\Http\ViewComposers\AsideComposer');
 	}
 
 	/**

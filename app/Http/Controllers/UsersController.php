@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
+use App\Category;
 use App\Http\Requests\UserRequest;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller {
@@ -101,5 +104,23 @@ class UsersController extends Controller {
 		flash('El usuario ' . $usuario->name . ' se borro de forma exitosa')->error();
 		return redirect()->route('users.index');
 
+	}
+	public function perfil() {
+		$datos = Category::all();
+		$article = array();
+		$categorias = array();
+		foreach ($datos as $data) {
+			$article[] = $data->articles->where('user_id', \Auth::user()->id);
+			$categorias[] = $data->name;
+		}
+		Carbon::setLocale('es');
+		$articulos = Article::where('user_id', \Auth::user()->id)->orderBy('id', 'DESC')->limit(9)->get();
+		$articulos->each(function ($articulos) {
+			$articulos->images;
+		});
+		return view('admin.users.perfil')
+			->with('categorias', $categorias)
+			->with('numArticulos', $article)
+			->with('articulosEscritos', $articulos);
 	}
 }

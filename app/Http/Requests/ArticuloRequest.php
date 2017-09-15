@@ -24,7 +24,7 @@ class ArticuloRequest extends FormRequest {
 			'titulo' => 'min:8|max:250|required|unique:articles,title',
 			'contenido' => 'min:60|required',
 			'categorias' => 'required',
-			'imagen' => 'image|required',
+			'imagen' => 'image|required|dimensions:min_width=500,min_height=500,max_width=900,max_height=900',
 		];
 	}
 }

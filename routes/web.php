@@ -14,24 +14,36 @@ Route::get('/', function () {
 	return redirect()->route('inicio');
 });
 Route::get('categorias/{name}', [
-	'uses' => 'FontController@searchCategory',
+	'uses' => 'FrontController@searchCategory',
 	'as' => 'inicio.buscar.categoria',
 ]);
 Route::get('tags/{name}', [
-	'uses' => 'FontController@searchTag',
+	'uses' => 'FrontController@searchTag',
 	'as' => 'inicio.buscar.tag',
 ]);
+Route::get('categoria/{name}', [
+	'uses' => 'FrontController@categoria',
+	'as' => 'categoria',
+]);
+Route::get('articulo/{name}', [
+	'uses' => 'FrontController@articulo',
+	'as' => 'articulo',
+]);
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
 	Route::get('/', [
 		'uses' => 'HomeController@index',
 		'as' => 'admin.index',
 	]);
-	Route::resource('users', 'UsersController');
-	Route::get('users/{id}/destroy', [
-		'uses' => 'UsersController@destroy',
-		'as' => 'admin.users.destroy',
-	]);
+	Route::group(['middleware' => 'admin'], function () {
+
+		Route::resource('users', 'UsersController');
+		Route::get('users/{id}/destroy', [
+			'uses' => 'UsersController@destroy',
+			'as' => 'admin.users.destroy',
+		]);
+	});
 	Route::resource('categorias', 'CategoriasController');
 	Route::get('categorias/{id}/destroy', [
 		'uses' => 'CategoriasController@destroy',
@@ -51,6 +63,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 	Route::get('imagenes', [
 		'uses' => 'ImagenesController@index',
 		'as' => 'admin.imagenes.index',
+	]);
+	Route::get('perfil', [
+		'uses' => 'UsersController@perfil',
+		'as' => 'admin.perfil',
 	]);
 });
 Auth::routes();

@@ -1,50 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Bootstrap -->
-    <link href="{{ asset('plugins/plantilla/') }}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="{{ asset('plugins/plantilla/') }}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="{{ asset('plugins/plantilla/') }}/vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="{{ asset('plugins/plantilla/') }}/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-
-    <!-- bootstrap-progressbar -->
-    <link href="{{ asset('plugins/plantilla/') }}/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    <!-- JQVMap -->
-    <link href="{{ asset('plugins/plantilla/') }}/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-    <!-- bootstrap-daterangepicker -->
-    <link href="{{ asset('plugins/plantilla/') }}/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="{{ asset('plugins/plantilla/') }}/build/css/custom.min.css" rel="stylesheet">
-  </head>
-
+    <head>
+        <!-- Bootstrap -->
+        <link href="{{ asset('plugins/plantilla/') }}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="{{ asset('plugins/plantilla/') }}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="{{ asset('plugins/plantilla/') }}/vendors/nprogress/nprogress.css" rel="stylesheet">
+        <!-- iCheck -->
+        <link href="{{ asset('plugins/plantilla/') }}/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+        <!-- bootstrap-progressbar -->
+        <link href="{{ asset('plugins/plantilla/') }}/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+        <!-- JQVMap -->
+        <link href="{{ asset('plugins/plantilla/') }}/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+        <!-- bootstrap-daterangepicker -->
+        <link href="{{ asset('plugins/plantilla/') }}/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+        <!-- Custom Theme Style -->
+        <link href="{{ asset('plugins/plantilla/') }}/build/css/custom.min.css" rel="stylesheet">
+    </head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>@yield('title','dafault')</title>
-	<link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.min.css')}}">
-	<link rel="stylesheet" href="{{ asset('plugins/trumbowyg/ui/trumbowyg.min.css')}}">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>@yield('title','dafault')</title>
+    <link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('plugins/trumbowyg/ui/trumbowyg.min.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body class="nav-md">
     <div class="container body">
-      <div class="main_container">
-	@yield('css')
-@include('admin.partials.nav');
-    <div class="right_col" role="main">
-	@include('flash::message')
-	@include('admin.partials.mensajes');
-	@yield('content')
-</div>
-</div>
-</div>
-
+        <div class="main_container">
+            @yield('css')
+            @include('admin.partials.nav');
+            <div class="right_col" role="main">
+                @include('flash::message')
+                @include('admin.partials.mensajes');
+                @yield('content')
+            </div>
+        </div>
+    </div>
     <script src="{{ asset('plugins/plantilla/') }}/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="{{ asset('plugins/plantilla/') }}/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -81,13 +76,11 @@
     <!-- bootstrap-daterangepicker -->
     <script src="{{ asset('plugins/plantilla/') }}/vendors/moment/min/moment.min.js"></script>
     <script src="{{ asset('plugins/plantilla/') }}/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
     <!-- Custom Theme Scripts -->
-
-<script src="{{ asset('plugins/chosen/chosen.jquery.min.js')}}"></script>
-<script src="{{ asset('plugins/trumbowyg/trumbowyg.min.js')}}"></script>
+    <script src="{{ asset('plugins/chosen/chosen.jquery.min.js')}}"></script>
+    <script src="{{ asset('plugins/trumbowyg/trumbowyg.min.js')}}"></script>
     <script src="{{ asset('plugins/plantilla/') }}/build/js/custom.min.js"></script>
-@yield('js')
-<script></script>
+    @yield('js')
+    <script></script>
 </body>
 </html>
