@@ -463,7 +463,7 @@ if (typeof NProgress != 'undefined') {
 			grid: {
 				show: true,
 				aboveData: true,
-				color: "#3f3f3f",
+				color: "#1341",
 				labelMargin: 10,
 				axisMargin: 0,
 				borderWidth: 0,
@@ -519,7 +519,7 @@ if (typeof NProgress != 'undefined') {
 				minTickSize: [1, "day"],
 				timeformat: "%d/%m/%y",
 				min: chart_plot_02_data[0][0],
-				max: chart_plot_02_data[20][0]
+				max: chart_plot_02_data[9][0]
 			}
 		};	
 	
@@ -562,10 +562,10 @@ if (typeof NProgress != 'undefined') {
 				label: "Email Sent", 
 				data: chart_plot_02_data, 
 				lines: { 
-					fillColor: "rgba(150, 202, 89, 0.12)" 
+					fillColor: "rgba(95, 2, 89, 0.12)" 
 				}, 
 				points: { 
-					fillColor: "#fff" } 
+					fillColor: "#4884" } 
 			}], chart_plot_02_settings);
 			
 		}

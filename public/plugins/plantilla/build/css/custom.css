@@ -3422,7 +3422,7 @@ a.hiddenanchor {
 }
 .registration_form {
     z-index: 21;
-    opacity: 0;
+    opacity: 1;
     width: 100%
 }
 .login_form {

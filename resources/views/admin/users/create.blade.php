@@ -13,12 +13,12 @@
 </div>
 
 @endif
-	<div class="row">
+	<div class="row" id="vue">
 		{!! Form::open(['route' => 'users.store']) !!}
 		<div class="col-xs-12 col-sm-6 col-md-6">
 			<div class="form-group">
-				{!! Form::label('nombreUsuario','Nombre del usuario') !!}
-				{!! Form::text('nombreUsuario',null,['class'=>'form-control','placeholder'=>'Ej: Jonatan Villalobos Guchuvo', 'required']) !!}
+				<span v-bind:class="valid">{!! Form::label('nombreUsuario','Nombre del usuario ') !!}</span>
+				<input class="form-control" placeholder="Ej: Jonatan Villalobos Guchuvo" required="" name="nombreUsuario" type="text" id="nombreUsuario">
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6">
@@ -47,10 +47,27 @@
 		</div>
 		<div class="col-xs-12 ">
 			<div class="form-group">
-				{!! Form::submit('Enviar',['class' =>'btn btn-primary']); !!}
+				<input type="submit" class="btn btn-primary" value="Enviar" v-on:click="validar">
 			</div>
 		</div>
 		{!! Form::close() !!}
 	</div>
 </div>
+@endsection
+@section('js')
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#vue',
+			data:{
+				valid:''
+			},
+			methods: {
+				validar: function (event) {
+					event.preventDefault;
+					this.valid="red";
+				}
+			}
+		});
+	</script>
 @endsection

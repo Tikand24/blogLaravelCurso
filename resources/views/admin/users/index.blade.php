@@ -2,7 +2,7 @@
 @section('title','Listado de usuarios')
 @section('content')
 <div class="container">
-	<a href="{{ route('users.create') }}" class="btn btn-success">Crear usuario</a>
+	<a href="{{ route('users.create') }}" class="btn btn-success">Crear usuario <i class="fa fa-plus-square"></i></a>
 	<table class="table table-striped">
 		<thead>
 			<th>Id</th>

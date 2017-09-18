@@ -16,7 +16,7 @@
         <!-- bootstrap-daterangepicker -->
         <link href="{{ asset('plugins/plantilla/') }}/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
         <!-- Custom Theme Style -->
-        <link href="{{ asset('plugins/plantilla/') }}/build/css/custom.min.css" rel="stylesheet">
+        <link href="{{ asset('plugins/plantilla/') }}/build/css/custom.css" rel="stylesheet">
     </head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -79,7 +79,7 @@
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('plugins/chosen/chosen.jquery.min.js')}}"></script>
     <script src="{{ asset('plugins/trumbowyg/trumbowyg.min.js')}}"></script>
-    <script src="{{ asset('plugins/plantilla/') }}/build/js/custom.min.js"></script>
+    <script src="{{ asset('plugins/plantilla/') }}/build/js/custom.js"></script>
     @yield('js')
     <script></script>
 </body>
